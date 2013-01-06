@@ -1,5 +1,6 @@
 #export path for homebrew
-export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/share/python:$PATH:."
+export EDITOR="/usr/local/bin/mate -w"
 
 #enables color for iTerm
 export TERM=xterm-color
@@ -12,10 +13,17 @@ export LC_CTYPE=en_US.UTF-8
 #sets up proper alias commands when called
 alias ls='ls -G'
 alias ll='ls -hl'
-alias octave='exec '/Applications/Octave.app/Contents/Resources/bin/octave''
+alias flushcache='sudo killall -HUP mDNSResponder'
+alias tunnel='ssh -D 8080 -f -C -q -N'
+alias reverse-shell='ssh -f -C -q -N -R 12345:localhost:22'
+alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
+alias matlab='/Applications/MATLAB_R2012a.app/bin/matlab -nodesktop'
 
 # Git Tab Completion
-source ~/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-completion.bash
+
+# Homebrew autocomplete
+source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 
 #show branch in status line
 #PS1='[\W$(__git_ps1 " (%s)")]\$ '

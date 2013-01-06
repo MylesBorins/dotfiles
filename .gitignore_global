@@ -6,6 +6,7 @@
 *.exe
 *.o
 *.so
+*.pyc
 
 # Packages #
 ############
@@ -32,3 +33,8 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# some extra shiznit
+
+.gitignore
+node_modules/**/*

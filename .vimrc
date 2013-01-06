@@ -1,0 +1,67 @@
+set backspace=indent,eol,start
+
+set splitright
+
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+filetype on
+syntax enable
+set mouse=a
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle "chriskempson/vim-tomorrow-theme"
+Bundle "pangloss/vim-javascript"
+Bundle "hallettj/jslint.vim"
+Bundle 'vrackets'
+Bundle "scrooloose/nerdcommenter"
+Bundle 'Lokaltog/vim-powerline'
+Bundle "scrooloose/syntastic"
+
+" Nerd tree Stuffs
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+filetype plugin indent on     " required!
+
+" auto
+set sw=2 ts=2 sts=2
+set autoindent
+set smartindent
+set expandtab
+set cindent
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
+set laststatus=2
+set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('fileformat')
+
+"Show line number (disable)for certain filetypes
+set number
+autocmd BufNewFile,BufRead .*,COMMIT_EDITMSG set nonumber"
+
+"Highlight cursor
+"highlight CursorLine cterm=NONE ctermbg=8
+"
+"" Syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': ["tex"] }
+let g:syntastic_javascript_syntax_checker = 'jshint'
+let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
+"let g:syntastic_python_syntax_checker = 'flake8'
+let g:syntastic_check_on_open=0
+let g:syntastic_error_symbol='✗'
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1"

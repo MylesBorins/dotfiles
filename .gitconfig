@@ -1,0 +1,19 @@
+[user]
+	name = Myles Borins
+	email = myles.borins@gmail.com
+[github]
+	user = thealphanerd
+	token = NOPENOPENOPENOPENOPE
+[color]
+	diff = true
+	ui = auto
+[core]
+	excludesfile = /Users/thealphanerd/.gitignore_global
+	editor = mate -w
+[alias]
+	co = checkout
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
