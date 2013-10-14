@@ -24,7 +24,6 @@ Bundle "hallettj/jslint.vim"
 Bundle 'vrackets'
 Bundle "scrooloose/nerdcommenter"
 Bundle 'Lokaltog/vim-powerline'
-Bundle "scrooloose/syntastic"
 
 " Nerd tree Stuffs
 map <C-n> :NERDTreeToggle<CR>
@@ -53,15 +52,3 @@ autocmd BufNewFile,BufRead .*,COMMIT_EDITMSG set nonumber"
 "Highlight cursor
 "highlight CursorLine cterm=NONE ctermbg=8
 "
-"" Syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ["tex"] }
-let g:syntastic_javascript_syntax_checker = 'jshint'
-let g:syntastic_javascript_jshint_conf = "~/.jshintrc"
-"let g:syntastic_python_syntax_checker = 'flake8'
-let g:syntastic_check_on_open=0
-let g:syntastic_error_symbol='✗'
-let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1"

@@ -1,5 +1,5 @@
 #export path for homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/usr/local/share/python:$PATH:."
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH:."
 export EDITOR="/usr/local/bin/mate -w"
 
 #enables color for iTerm
@@ -10,20 +10,34 @@ export LANG=en_US.UTF-8
 
 export LC_CTYPE=en_US.UTF-8
 
+# Lets get rbenc working
+
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Fix xcb-shm link
+export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
+
+
 #sets up proper alias commands when called
 alias ls='ls -G'
 alias ll='ls -hl'
-alias flushcache='sudo killall -HUP mDNSResponder'
 alias tunnel='ssh -D 8080 -f -C -q -N'
 alias reverse-shell='ssh -f -C -q -N -R 12345:localhost:22'
+alias flushcache='sudo killall -HUP mDNSResponder'
 alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
 alias matlab='/Applications/MATLAB_R2012a.app/bin/matlab -nodesktop'
+alias pd='/Applications/Pd-extended.app/Contents/MacOS/Pd-extended'
+alias submodule-update='git add . && git commit -m "Updated Submodule" && git push'
 
 # Git Tab Completion
 source /usr/local/etc/bash_completion.d/git-completion.bash
 
 # Homebrew autocomplete
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+
+# Grunt Tab Completion
+eval "$(grunt --completion=bash)"
 
 #show branch in status line
 #PS1='[\W$(__git_ps1 " (%s)")]\$ '
@@ -65,3 +79,13 @@ echo -e $gitver
 
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='[\W\[]${c_sgr0}\]\[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]$ '
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+# {{{
+# Node Completion - Auto-generated, do not touch.
+shopt -s progcomp
+#for f in $(command ls ~/.node-completion); do
+  #f="$HOME/.node-completion/$f"
+  #test -f "$f" && . "$f"
+#done
+# }}}

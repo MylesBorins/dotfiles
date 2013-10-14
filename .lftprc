@@ -99,5 +99,7 @@ alias qs queue stop
 alias k kill
 alias ka kill all
 alias down lcd /cygdrive/c/download
-alias m mirror -c --use-pget-n=5
+alias m mirror -c --use-pget-n=10
+alias mb mirror -c --use-pget-n=40
 alias p pget -c -n 10
+alias pb pget -c -n 40
