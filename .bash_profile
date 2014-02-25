@@ -2,6 +2,9 @@
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH:."
 export EDITOR="/usr/local/bin/mate -w"
 
+#export python path
+export PYTHONPATH=\"$(brew --prefix)/lib/python2.7/site-packages:\$PYTHONPATH\" >> ~/.bash_profile
+
 #enables color for iTerm
 export TERM=xterm-color
 
@@ -26,7 +29,6 @@ alias tunnel='ssh -D 8080 -f -C -q -N'
 alias reverse-shell='ssh -f -C -q -N -R 12345:localhost:22'
 alias flushcache='sudo killall -HUP mDNSResponder'
 alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
-alias matlab='/Applications/MATLAB_R2012a.app/bin/matlab -nodesktop'
 alias pd='/Applications/Pd-extended.app/Contents/MacOS/Pd-extended'
 alias submodule-update='git add . && git commit -m "Updated Submodule" && git push'
 
@@ -35,6 +37,9 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 
 # Homebrew autocomplete
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+
+# npm autocomplete
+source /usr/local/etc/bash_completion.d/npm.bash
 
 # Grunt Tab Completion
 eval "$(grunt --completion=bash)"

@@ -12,12 +12,15 @@
 	editor = mate -w
 [alias]
 	co = checkout
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   plus = commit -a --amend --no-edit
   assume   = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
   assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+  xcode = !git add *.xcodeproj && git commit *.xcodeproj -m 'Fuck you xcode'
 [credential]
 	helper = osxkeychain
 [push]
 	default = simple
+[help]
+	autocorrect = 1

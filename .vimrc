@@ -13,6 +13,13 @@ filetype on
 syntax enable
 set mouse=a
 
+" From https://github.com/colinwren/dotfiles/blob/master/.vimrc
+" Remap :W to :w
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
@@ -52,3 +59,4 @@ autocmd BufNewFile,BufRead .*,COMMIT_EDITMSG set nonumber"
 "Highlight cursor
 "highlight CursorLine cterm=NONE ctermbg=8
 "
+
