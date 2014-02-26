@@ -3,7 +3,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH:."
 export EDITOR="/usr/local/bin/mate -w"
 
 #export python path
-export PYTHONPATH=\"$(brew --prefix)/lib/python2.7/site-packages:\$PYTHONPATH\" >> ~/.bash_profile
+export PYTHONPATH=\"$(brew --prefix)/lib/python2.7/site-packages:\$PYTHONPATH\"
 
 #enables color for iTerm
 export TERM=xterm-color
@@ -32,17 +32,13 @@ alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
 alias pd='/Applications/Pd-extended.app/Contents/MacOS/Pd-extended'
 alias submodule-update='git add . && git commit -m "Updated Submodule" && git push'
 
-# Git Tab Completion
-source /usr/local/etc/bash_completion.d/git-completion.bash
+# Source all bash completions installed by homebrew
+# need to run the following command to support this
+# brew install bash-completion
 
-# Homebrew autocomplete
-source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
-
-# npm autocomplete
-source /usr/local/etc/bash_completion.d/npm.bash
-
-# Grunt Tab Completion
-eval "$(grunt --completion=bash)"
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
 #show branch in status line
 #PS1='[\W$(__git_ps1 " (%s)")]\$ '
