@@ -37,4 +37,4 @@ Thumbs.db
 # some extra shiznit
 
 .gitignore
-node_modules/**/*
+**/node_modules/**/*
