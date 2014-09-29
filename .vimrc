@@ -59,4 +59,3 @@ autocmd BufNewFile,BufRead .*,COMMIT_EDITMSG set nonumber"
 "Highlight cursor
 "highlight CursorLine cterm=NONE ctermbg=8
 "
-

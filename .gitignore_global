@@ -35,6 +35,5 @@ Icon?
 Thumbs.db
 
 # some extra shiznit
-
-.gitignore
 **/node_modules/**/*
+.ruby-version

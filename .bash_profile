@@ -1,9 +1,6 @@
 #export path for homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH:."
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
 export EDITOR="/usr/local/bin/mate -w"
-
-#export python path
-export PYTHONPATH=\"$(brew --prefix)/lib/python2.7/site-packages:\$PYTHONPATH\"
 
 #enables color for iTerm
 export TERM=xterm-color
@@ -13,10 +10,12 @@ export LANG=en_US.UTF-8
 
 export LC_CTYPE=en_US.UTF-8
 
-# Lets get rbenc working
-
+# Lets get rbenv working
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# redis
+export REDIS_URL="redis://127.0.0.1:6379/0"
 
 # Fix xcb-shm link
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
@@ -29,8 +28,8 @@ alias tunnel='ssh -D 8080 -f -C -q -N'
 alias reverse-shell='ssh -f -C -q -N -R 12345:localhost:22'
 alias flushcache='sudo killall -HUP mDNSResponder'
 alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
-alias pd='/Applications/Pd-extended.app/Contents/MacOS/Pd-extended'
-alias submodule-update='git add . && git commit -m "Updated Submodule" && git push'
+alias temp='cd $TMPDIR'
+alias publish='git push && git push --tags && npm publish'
 
 # Source all bash completions installed by homebrew
 # need to run the following command to support this
