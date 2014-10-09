@@ -30,6 +30,7 @@ alias flushcache='sudo killall -HUP mDNSResponder'
 alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
 alias temp='cd $TMPDIR'
 alias publish='git push && git push --tags && npm publish'
+alias nightly='/Applications/FirefoxNightly.app/Contents/MacOS/firefox-bin -P Nightly -no-remote > /dev/null  &'
 
 # Source all bash completions installed by homebrew
 # need to run the following command to support this
