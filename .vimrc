@@ -2,14 +2,6 @@ set backspace=indent,eol,start
 
 set splitright
 
-set nocompatible               " be iMproved
-filetype off                   " required!
-
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-filetype on
 syntax enable
 set mouse=a
 
@@ -20,23 +12,28 @@ set mouse=a
 :command W w
 :command Q q
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle "chriskempson/vim-tomorrow-theme"
-Bundle "pangloss/vim-javascript"
-Bundle "hallettj/jslint.vim"
-Bundle 'vrackets'
-Bundle "scrooloose/nerdcommenter"
-Bundle 'Lokaltog/vim-powerline'
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Lokaltog/vim-powerline'
 
 " Nerd tree Stuffs
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-filetype plugin indent on     " required!
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " auto
 set sw=2 ts=2 sts=2
