@@ -20,6 +20,12 @@ export REDIS_URL="redis://127.0.0.1:6379/0"
 # Fix xcb-shm link
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 
+# simplify node.js git workflow
+applyGitPatch() {
+  curl -L $1.patch | git am --whitespace=fix;
+}
+
+alias patchit=applyGitPatch
 
 #sets up proper alias commands when called
 alias ls='ls -G'
