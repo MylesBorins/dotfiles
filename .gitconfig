@@ -23,6 +23,7 @@
   xcode = !git add *.xcodeproj && git commit *.xcodeproj -m 'Fuck you xcode'
   authors = !git log --all --format='%aN <%aE>' | sort -u
   patchit = "!f() { curl -L $1.patch | git am --whitespace=fix; }; f"
+  patchit-please = "!f() { curl -L $1.patch | git am -3 --whitespace=fix; }; f"
 [credential]
   helper = osxkeychain
 [push]
