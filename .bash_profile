@@ -1,6 +1,11 @@
 #export path for homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
+
+#my deep shame
 export EDITOR="/usr/local/bin/mate -w"
+
+#enable ccache
+export PATH="/usr/local/opt/ccache/libexec:$PATH"
 
 #enables color for iTerm
 export TERM=xterm-color
@@ -20,20 +25,12 @@ export REDIS_URL="redis://127.0.0.1:6379/0"
 # Fix xcb-shm link
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 
-# simplify node.js git workflow
-applyGitPatch() {
-  curl -L $1.patch | git am --whitespace=fix;
-}
-
-alias patchit=applyGitPatch
-
 #sets up proper alias commands when called
 alias ls='ls -G'
 alias ll='ls -hl'
 alias tunnel='ssh -D 8080 -f -C -q -N'
 alias reverse-shell='ssh -f -C -q -N -R 12345:localhost:22'
 alias flushcache='sudo killall -HUP mDNSResponder'
-alias androidDebug='adb forward tcp:9222 localabstract:chrome_devtools_remote'
 alias temp='cd $TMPDIR'
 alias publish='git push && git push --tags && npm publish'
 alias nightly='/Applications/FirefoxNightly.app/Contents/MacOS/firefox-bin -P Nightly -no-remote > /dev/null  &'
