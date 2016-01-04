@@ -24,6 +24,7 @@
   authors = !git log --all --format='%aN <%aE>' | sort -u
   patchit = "!f() { curl -L $1.patch | git am --whitespace=fix; }; f"
   patchit-please = "!f() { curl -L $1.patch | git am -3 --whitespace=fix; }; f"
+  head = "!git rev-parse HEAD | cut -b -10"
 [credential]
   helper = osxkeychain
 [push]
