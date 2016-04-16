@@ -1,5 +1,5 @@
 #export path for homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:.:./node_modules/.bin"
 
 #my deep shame
 export EDITOR="/usr/local/bin/mate -w"
