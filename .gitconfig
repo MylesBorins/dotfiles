@@ -1,16 +1,15 @@
 [user]
   name = Myles Borins
   email = myles.borins@gmail.com
-  # email = mborins@us.ibm.com
-  username = thealphanerd
+  username = mylesborins
 [github]
-  user = thealphanerd
+  user = mylesborins
   token = NOPENOPENOPENOPENOPE
 [color]
   diff = true
   ui = auto
 [core]
-  excludesfile = /Users/thealphanerd/.gitignore_global
+  excludesfile = /Users/mylesborins/.gitignore_global
   editor = mate -w
   whitespace = fix
 [alias]
