@@ -1,39 +1,61 @@
 #export path for homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:.:./node_modules/.bin"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
 
-#my deep shame
-export EDITOR="/usr/local/bin/mate -w"
-
-#enable ccache
+# export path for ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
+
+# export textmate as editor
+export EDITOR="/usr/local/bin/mate -w"
 
 #enables color for iTerm
 export TERM=xterm-color
 
 #Add UTF-8 Support
 export LANG=en_US.UTF-8
-
 export LC_CTYPE=en_US.UTF-8
 
 # Lets get rbenv working
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# load nvm
+export NVM_DIR="/Users/thealphanerd/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # redis
-export REDIS_URL="redis://127.0.0.1:6379/0"
+export REDIS_PORT="6379"
+export REDIS_URL="redis://127.0.0.1:$REDIS_PORT/0"
 
 # Fix xcb-shm link
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 
-#sets up proper alias commands when called
+# give ls colors and make ll
 alias ls='ls -G'
 alias ll='ls -hl'
+
+# open an ssh tunnel that you can pipe traffic too
+# turn any box into a VPN!
 alias tunnel='ssh -D 8080 -f -C -q -N'
+
+# open a port on another box that you can
+# pipe traffic from it back to you
 alias reverse-shell='ssh -f -C -q -N -R 12345:localhost:22'
+
+# afaik this flushes the dns cache on a mac
 alias flushcache='sudo killall -HUP mDNSResponder'
+
+# lazy
 alias temp='cd $TMPDIR'
+
+# this is sketchy
 alias publish='git push && git push --tags && npm publish'
-alias nightly='/Applications/FirefoxNightly.app/Contents/MacOS/firefox-bin -P Nightly -no-remote > /dev/null  &'
+
+# osx has a built in ftp server :D
+alias start-ftp='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
+alias stop-ftp='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.plist'
+
+# for some really quick and dirty c work
+alias compile='gcc -Wall -g -c'
 
 # Source all bash completions installed by homebrew
 # need to run the following command to support this
@@ -42,10 +64,6 @@ alias nightly='/Applications/FirefoxNightly.app/Contents/MacOS/firefox-bin -P Ni
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-#show branch in status line
-#PS1='[\W$(__git_ps1 " (%s)")]\$ '
-#export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
@@ -83,12 +101,3 @@ echo -e $gitver
 
 #It's important to escape colors with \[ to indicate the length is 0
 PS1='[\W\[]${c_sgr0}\]\[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]$ '
-
-# {{{
-# Node Completion - Auto-generated, do not touch.
-shopt -s progcomp
-#for f in $(command ls ~/.node-completion); do
-  #f="$HOME/.node-completion/$f"
-  #test -f "$f" && . "$f"
-#done
-# }}}
