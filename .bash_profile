@@ -100,4 +100,4 @@ echo -e $gitver
 }
 
 #It's important to escape colors with \[ to indicate the length is 0
-PS1='[\W\[]${c_sgr0}\]\[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]$ '
+PS1='[\W\[]${c_sgr0}\]\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]$ '
