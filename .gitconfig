@@ -29,6 +29,7 @@
   patchit-please = "!f() { echo $1.patch | sed s_pull/[0-9]*/commits_commit_ | xargs curl -L | git am -3 --whitespace=fix; }; f"
   # patchit-please = "!f() { curl -L $1.patch | git am -3 --whitespace=fix; }; f"
   head = "!git rev-parse HEAD | cut -b -10"
+  mcfly = reset --hard HEAD~1
 [credential]
   helper = osxkeychain
 [push]
