@@ -4,6 +4,12 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
 # export path for ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 
+# export node modules
+export PATH="$PATH:node_modules/.bin"
+
+# export depot tools
+export PATH="/Users/mborins/code/depot_tools:$PATH"
+
 # export textmate as editor
 export EDITOR="/usr/local/bin/mate -w"
 
@@ -15,19 +21,16 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Lets get rbenv working
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# export RBENV_ROOT=/usr/local/var/rbenv
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # load nvm
 export NVM_DIR="/Users/thealphanerd/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # redis
-export REDIS_PORT="6379"
-export REDIS_URL="redis://127.0.0.1:$REDIS_PORT/0"
-
-# Fix xcb-shm link
-export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
+# export REDIS_PORT="6379"
+# export REDIS_URL="redis://127.0.0.1:$REDIS_PORT/0"
 
 # give ls colors and make ll
 alias ls='ls -G'
@@ -56,6 +59,9 @@ alias stop-ftp='sudo -s launchctl unload -w /System/Library/LaunchDaemons/ftp.pl
 
 # for some really quick and dirty c work
 alias compile='gcc -Wall -g -c'
+
+# run tests from last PR
+alias gt='tools/test.py -J `git show --name-only --pretty="" | grep 'test/'`'
 
 # Source all bash completions installed by homebrew
 # need to run the following command to support this
