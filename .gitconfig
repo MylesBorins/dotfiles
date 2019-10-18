@@ -23,8 +23,8 @@
   unassume = update-index --no-assume-unchanged
   assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
   xcode = !git add *.xcodeproj && git commit *.xcodeproj -m 'Fuck you xcode'
-  patchit = "!f() { curl -L $1.patch | git am --whitespace=fix; }; f"
-  patchit-please = "!f() { curl -L $1.patch | git am -3 --whitespace=fix; }; f"
+  patchit = "!f() { curl -L $1.patch | git am; }; f"
+  patchit-please = "!f() { curl -L $1.patch | git am -3; }; f"
   head = "!git rev-parse HEAD | cut -b -10"
   mcfly = reset --hard HEAD~1
 [credential]
