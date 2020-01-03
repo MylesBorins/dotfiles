@@ -6,6 +6,7 @@
   name = Myles Borins
   email = myles.borins@gmail.com
   username = mylesborins
+  signingkey = 0B5CA946
 [github]
   user = mylesborins
   token = NOPENOPENOPENOPENOPE

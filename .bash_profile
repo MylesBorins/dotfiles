@@ -8,7 +8,7 @@ export PATH="/usr/local/opt/ccache/libexec:$PATH"
 export PATH="$PATH:node_modules/.bin"
 
 # export depot tools
-export PATH="/Users/mborins/code/depot_tools:$PATH"
+# export PATH="/Users/mborins/code/depot_tools:$PATH"
 
 # export textmate as editor
 export EDITOR="/usr/local/bin/mate -w"
@@ -27,6 +27,7 @@ export LC_CTYPE=en_US.UTF-8
 # load nvm
 export NVM_DIR="/Users/thealphanerd/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # redis
 # export REDIS_PORT="6379"
@@ -49,9 +50,6 @@ alias flushcache='sudo killall -HUP mDNSResponder'
 
 # lazy
 alias temp='cd $TMPDIR'
-
-# this is sketchy
-alias publish='git push && git push --tags && npm publish'
 
 # osx has a built in ftp server :D
 alias start-ftp='sudo -s launchctl load -w /System/Library/LaunchDaemons/ftp.plist'
