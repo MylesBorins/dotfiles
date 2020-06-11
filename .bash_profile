@@ -1,3 +1,6 @@
+# Do not remind me I prefer bash yo
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 #export path for homebrew
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
 
@@ -8,7 +11,7 @@ export PATH="/usr/local/opt/ccache/libexec:$PATH"
 export PATH="$PATH:node_modules/.bin"
 
 # export depot tools
-# export PATH="/Users/mborins/code/depot_tools:$PATH"
+# export PATH="/Users/$USER/code/depot_tools:$PATH"
 
 # export textmate as editor
 export EDITOR="/usr/local/bin/mate -w"
@@ -25,7 +28,7 @@ export LC_CTYPE=en_US.UTF-8
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # load nvm
-export NVM_DIR="/Users/thealphanerd/.nvm"
+export NVM_DIR="/Users/$USER/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
