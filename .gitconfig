@@ -4,7 +4,7 @@
   # email = secret@keep.it
   # username = secret
   name = Myles Borins
-  email = myles.borins@gmail.com
+  email = mylesborins@github.com
   username = mylesborins
   signingkey = 0B5CA946
 [github]
@@ -14,8 +14,8 @@
   diff = true
   ui = auto
 [core]
-  excludesfile = /Users/mylesborins/.gitignore_global
-  editor = mate -w
+  excludesfile = ~/.gitignore_global
+  # editor = mate -w
 [alias]
   co = checkout
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
@@ -30,12 +30,12 @@
   mcfly = reset --hard HEAD~1
   fixup = commit --fixup HEAD
 [credential]
-  helper = osxkeychain
+  # helper = osxkeychain
 [push]
   default = simple
 [help]
   autocorrect = 1
 [commit]
-  gpgsign = true
+  # gpgsign = true
 [init]
   defaultBranch = main
