@@ -9,7 +9,7 @@
   signingkey = 0B5CA946
 [github]
   user = mylesborins
-  token = NOPENOPENOPENOPENOPE
+  # token = NOPENOPENOPENOPENOPE
 [color]
   diff = true
   ui = auto
