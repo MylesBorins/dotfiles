@@ -72,6 +72,10 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+if [-f /usr/share/bash-completion/completions/git]; then
+  source /usr/share/bash-completion/completions/git
+fi
+
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
