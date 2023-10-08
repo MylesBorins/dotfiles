@@ -13,8 +13,8 @@ export PATH="$PATH:node_modules/.bin"
 # export depot tools
 # export PATH="/Users/$USER/code/depot_tools:$PATH"
 
-# export textmate as editor
-export EDITOR="/usr/local/bin/mate -w"
+# export vscode as editor
+export EDITOR="code -w"
 
 #enables color for iTerm
 export TERM=xterm-color
