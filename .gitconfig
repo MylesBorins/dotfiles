@@ -14,7 +14,7 @@
   ui = auto
 [core]
   excludesfile = ~/.gitignore_global
-  # editor = mate -w
+  # editor = code -w
 [alias]
   co = checkout
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
