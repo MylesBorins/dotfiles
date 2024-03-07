@@ -2,16 +2,13 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #export path for homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:."
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # export path for ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 
 # export node modules
 export PATH="$PATH:node_modules/.bin"
-
-# export depot tools
-# export PATH="/Users/$USER/code/depot_tools:$PATH"
 
 # export vscode as editor
 export EDITOR="code -w"
@@ -23,18 +20,8 @@ export TERM=xterm-color
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-# Lets get rbenv working
-# export RBENV_ROOT=/usr/local/var/rbenv
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# load nvm
-export NVM_DIR="/Users/$USER/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# redis
-# export REDIS_PORT="6379"
-# export REDIS_URL="redis://127.0.0.1:$REDIS_PORT/0"
+# load fnm
+eval "$(fnm env --use-on-cd)"
 
 # give ls colors and make ll
 alias ls='ls -G'
@@ -68,13 +55,7 @@ alias gt='tools/test.py -J `git show --name-only --pretty="" | grep 'test/'`'
 # need to run the following command to support this
 # brew install bash-completion
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
-
-if [-f /usr/share/bash-completion/completions/git]; then
-  source /usr/share/bash-completion/completions/git
-fi
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Setting GIT prompt
 c_cyan=`tput setaf 6`
