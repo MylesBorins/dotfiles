@@ -1,8 +1,10 @@
 # Do not remind me I prefer bash yo
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-#export path for homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+#export path for homebrew if it exists
+if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # export path for ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
@@ -20,8 +22,10 @@ export TERM=xterm-color
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-# load fnm
-eval "$(fnm env --use-on-cd)"
+# load fnm if it exists
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd)"
+fi
 
 # give ls colors and make ll
 alias ls='ls -G'
