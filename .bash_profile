@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Minimal legacy Bash config for systems where zsh isn't in play.
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
@@ -35,6 +36,7 @@ alias ls='ls -G'
 alias ll='ls -lah'
 alias temp='cd "$TMPDIR"'
 
+# shellcheck source=/opt/homebrew/etc/profile.d/bash_completion.sh
 [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
 PS1='[\W]$ '

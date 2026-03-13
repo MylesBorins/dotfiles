@@ -21,7 +21,7 @@ prompt_for_bundle() {
   local bundle_name="$1"
   local reply
   echo ""
-  read -p "==> Install ${bundle_name} bundle? [y/N] " reply
+  read -r -p "==> Install ${bundle_name} bundle? [y/N] " reply
   [[ "$reply" =~ ^[Yy]$ ]]
 }
 
@@ -144,9 +144,9 @@ fi
 
 # 8. Symlink dotfiles (optional)
 echo ""
-read -p "==> Symlink dotfiles? [y/N] " REPLY
+read -r -p "==> Symlink dotfiles? [y/N] " REPLY
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-  DOTFILES=(.gitconfig .zshrc .p10k.zsh .gitignore_global .vimrc .npmrc)
+  DOTFILES=(.gitconfig .zshrc .p10k.zsh .gitignore_global .vimrc .npmrc .tmux.conf)
   for f in "${DOTFILES[@]}"; do
     if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
       echo "    Backing up ~/$f to ~/$f.bak"
@@ -159,11 +159,11 @@ if [[ "$REPLY" =~ ^[Yy]$ ]]; then
   if [ -e "$HOME/.gitconfig.local" ]; then
     echo "    Keeping existing ~/.gitconfig.local"
   else
-    read -p "    Git name [Myles Borins]: " GIT_NAME
+    read -r -p "    Git name [Myles Borins]: " GIT_NAME
     GIT_NAME="${GIT_NAME:-Myles Borins}"
-    read -p "    Git email [myles.borins@gmail.com]: " GIT_EMAIL
+    read -r -p "    Git email [myles.borins@gmail.com]: " GIT_EMAIL
     GIT_EMAIL="${GIT_EMAIL:-myles.borins@gmail.com}"
-    read -p "    Git username [mylesborins]: " GIT_USERNAME
+    read -r -p "    Git username [mylesborins]: " GIT_USERNAME
     GIT_USERNAME="${GIT_USERNAME:-mylesborins}"
 
     cat > "$HOME/.gitconfig.local" <<EOF

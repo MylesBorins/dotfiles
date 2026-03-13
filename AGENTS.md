@@ -13,6 +13,7 @@ Notes for humans and coding agents working in this repo.
 - `.zshrc` is the primary shell config
 - `.bash_profile` is a minimal legacy fallback; keep it small
 - `.p10k.zsh` is generated; avoid hand-editing unless necessary
+- `.tmux.conf` should stay small and sensible, following the spirit of the older `.screenrc`
 - shell integrations for `direnv`, `fzf`, `zoxide`, and `tmux` should stay lightweight and predictable
 - keep setup changes conservative and re-runnable
 - do not broaden symlinking without a clear reason
@@ -32,6 +33,8 @@ After changes, prefer the smallest relevant checks:
 - `zsh -n .zshrc`
 - `vim -Nu .vimrc -n -es +qall`
 - `shellcheck setup.sh .bash_profile`
+
+If `tmux` is installed locally, a quick parse check with `tmux -f .tmux.conf -L dotfiles start-server` is reasonable.
 
 ## Non-goals
 

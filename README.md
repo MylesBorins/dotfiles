@@ -48,6 +48,7 @@ If you opt in, `setup.sh` links:
 - `.gitignore_global`
 - `.vimrc`
 - `.npmrc`
+- `.tmux.conf`
 
 If `~/.gitconfig.local` does not already exist, `setup.sh` creates it with your Git identity and a commented `includeIf` example for folder-specific overrides.
 
@@ -79,13 +80,41 @@ To make Powerlevel10k render correctly in iTerm2:
 
 If icons still look wrong, run `p10k configure` and let it re-detect your terminal/font setup.
 
-## Shell tools included
+## CLI tools included
 
 - `direnv` — auto-load project env vars from `.envrc`; use `direnv allow` after creating or changing a file.
 - `fzf` — fuzzy finder; common bindings are `Ctrl-R` for history, `Ctrl-T` for files, and `Alt-C` for directories.
 - `zoxide` — smarter directory jumping; use `z <name>` or `zi` for interactive selection.
 - `tmux` — terminal multiplexer; with the Oh My Zsh plugin you get helpers like `tl`, `ts <name>`, and `ta <name>`.
 - `shellcheck` — shell linter; run `shellcheck setup.sh .bash_profile` when editing shell code.
+- `fd` — a friendlier `find`; try `fd foo` or `fd -t d src`.
+- `delta` — better Git diffs; it is configured as the default Git pager.
+- `yq` — `jq`-style querying for YAML; useful for CI/config files.
+- `btop` — system monitor; this is the preferred replacement for `htop`.
+
+## Vim additions
+
+- `vim-fugitive` for Git integration inside Vim
+- `vim-surround` and `vim-repeat` for fast editing ergonomics
+- `editorconfig-vim` for per-project editor settings
+- `fzf.vim` for `:Files`, `:Buffers`, and `:Rg`
+
+Useful mappings:
+
+- `Ctrl-N` — toggle NERDTree
+- `Ctrl-P` — fuzzy-find files
+- `\b` — list open buffers
+- `\rg` — start an `:Rg` search
+
+## tmux defaults
+
+`setup.sh` now links `.tmux.conf`, which provides a small default config with:
+
+- mouse support
+- 5k lines of scrollback
+- vi-style copy-mode keys
+- 1-based window/pane numbering
+- a simple bottom status line inspired by the old `screen` config
 
 ## Optional bundle layout
 
