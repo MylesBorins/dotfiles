@@ -13,7 +13,7 @@ Notes for humans and coding agents working in this repo.
 - `.zshrc` is the primary shell config
 - `.bash_profile` is a minimal legacy fallback; keep it small
 - `.p10k.zsh` is generated; avoid hand-editing unless necessary
-- `.tmux.conf` should stay small and sensible, following the spirit of the older `.screenrc`
+- `.tmux.conf` is the primary multiplexer config; keep it small and sensible, with `.screenrc` treated as legacy reference only
 - shell integrations for `direnv`, `fzf`, `zoxide`, and `tmux` should stay lightweight and predictable
 - keep setup changes conservative and re-runnable
 - do not broaden symlinking without a clear reason

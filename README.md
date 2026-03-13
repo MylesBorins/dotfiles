@@ -7,7 +7,7 @@ Personal macOS-first dotfiles and bootstrap scripts.
 - primary shell setup in `.zshrc`
 - generated Powerlevel10k config in `.p10k.zsh`
 - minimal legacy Bash fallback in `.bash_profile`
-- Git, Vim, npm, screen, and lftp config
+- Git, Vim, npm, tmux, and lftp config (plus a legacy `.screenrc`)
 - Homebrew bundles for core, apps, and extras installs
 - `setup.sh` to bootstrap a fresh machine
 
@@ -55,7 +55,7 @@ If `~/.gitconfig.local` does not already exist, `setup.sh` creates it with your 
 These are intentionally **not** auto-linked right now:
 
 - `.bash_profile` (legacy fallback)
-- `.screenrc`
+- `.screenrc` (legacy reference)
 - `.lftprc`
 
 ## Notes
@@ -116,7 +116,7 @@ Useful mappings:
 - 5k lines of scrollback
 - vi-style copy-mode keys
 - 1-based window/pane numbering
-- a simple bottom status line inspired by the old `screen` config
+- a simple bottom status line inspired by the legacy `screen` config
 
 ## Optional bundle layout
 
