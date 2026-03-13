@@ -15,6 +15,8 @@ else
   echo "==> Homebrew already installed"
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # 2. Brew bundle (formulae + casks)
 echo "==> Running brew bundle..."
 brew bundle --file="$SCRIPT_DIR/Brewfile"
@@ -40,8 +42,17 @@ fi
 if ! command -v bun &>/dev/null; then
   echo "==> Installing bun..."
   curl -fsSL https://bun.sh/install | bash
+  export PATH="$PATH:$HOME/.bun/bin"
 else
   echo "==> bun already installed"
+fi
+
+# Generate bun completions (required for zshrc to exit cleanly)
+if command -v bun &>/dev/null; then
+  echo "==> Generating bun completions..."
+  bun completions 2>/dev/null || true
+else
+  echo "==> Skipping bun completions (bun not found)"
 fi
 
 # 6. ~/.zfunc directory
@@ -104,7 +115,18 @@ fi
 # 9. Install vim plugins (after .vimrc is in place)
 if [ -f "$HOME/.vimrc" ]; then
   echo "==> Installing vim plugins..."
-  vim +PlugInstall +qall
+  vim -es -u "$HOME/.vimrc" +PlugInstall +qall 2>/dev/null || true
+
+fi
+
+# 10. Setup rustup toolchain
+if ! command -v rustup &>/dev/null; then
+  echo "==> rustup not found, skipping toolchain install"
+elif ! rustup toolchain list | grep -q stable; then
+  echo "==> Installing Rust stable toolchain..."
+  rustup toolchain install stable --no-self-update
+else
+  echo "==> Rust toolchain already installed"
 fi
 
 echo ""
