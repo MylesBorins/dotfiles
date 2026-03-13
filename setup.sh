@@ -1,9 +1,63 @@
 #!/bin/bash
 #
 # setup.sh — Set up a new macOS machine
-# Homebrew-only. Safe to re-run.
+# Safe to re-run.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+INSTALL_APPS=""
+INSTALL_EXTRAS=""
+
+usage() {
+  cat <<EOF
+Usage: ./setup.sh [--apps] [--extras] [--all]
+
+  --apps      Install Brewfile.apps
+  --extras    Install Brewfile.extras
+  --all       Install both optional bundles
+EOF
+}
+
+prompt_for_bundle() {
+  local bundle_name="$1"
+  local reply
+  echo ""
+  read -p "==> Install ${bundle_name} bundle? [y/N] " reply
+  [[ "$reply" =~ ^[Yy]$ ]]
+}
+
+run_brew_bundle() {
+  local brewfile="$1"
+  local label="$2"
+
+  if [ -f "$brewfile" ]; then
+    echo "==> Running brew bundle (${label})..."
+    brew bundle --file="$brewfile"
+  fi
+}
+
+for arg in "$@"; do
+  case "$arg" in
+    --apps)
+      INSTALL_APPS=1
+      ;;
+    --extras)
+      INSTALL_EXTRAS=1
+      ;;
+    --all)
+      INSTALL_APPS=1
+      INSTALL_EXTRAS=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $arg"
+      usage
+      exit 1
+      ;;
+  esac
+done
 
 echo "==> Setting up machine"
 
@@ -18,8 +72,31 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # 2. Brew bundle (formulae + casks)
-echo "==> Running brew bundle..."
-brew bundle --file="$SCRIPT_DIR/Brewfile"
+run_brew_bundle "$SCRIPT_DIR/Brewfile" "base"
+
+if [ -z "$INSTALL_APPS" ] && [ -f "$SCRIPT_DIR/Brewfile.apps" ]; then
+  if prompt_for_bundle "apps"; then
+    INSTALL_APPS=1
+  else
+    INSTALL_APPS=0
+  fi
+fi
+
+if [ "$INSTALL_APPS" = "1" ]; then
+  run_brew_bundle "$SCRIPT_DIR/Brewfile.apps" "apps"
+fi
+
+if [ -z "$INSTALL_EXTRAS" ] && [ -f "$SCRIPT_DIR/Brewfile.extras" ]; then
+  if prompt_for_bundle "extras"; then
+    INSTALL_EXTRAS=1
+  else
+    INSTALL_EXTRAS=0
+  fi
+fi
+
+if [ "$INSTALL_EXTRAS" = "1" ]; then
+  run_brew_bundle "$SCRIPT_DIR/Brewfile.extras" "extras"
+fi
 
 # 3. Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -38,19 +115,11 @@ else
   echo "==> evalcache plugin already installed"
 fi
 
-# 5. bun
-if ! command -v bun &>/dev/null; then
-  echo "==> Installing bun..."
-  curl -fsSL https://bun.sh/install | bash
-  export PATH="$PATH:$HOME/.bun/bin"
-else
-  echo "==> bun already installed"
-fi
-
-# Generate bun completions (required for zshrc to exit cleanly)
+# 5. Generate bun completions (required by .zshrc)
 if command -v bun &>/dev/null; then
   echo "==> Generating bun completions..."
-  bun completions 2>/dev/null || true
+  mkdir -p "$HOME/.bun"
+  bun completions > "$HOME/.bun/_bun" 2>/dev/null || true
 else
   echo "==> Skipping bun completions (bun not found)"
 fi
@@ -77,23 +146,7 @@ fi
 echo ""
 read -p "==> Symlink dotfiles? [y/N] " REPLY
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-  # Git identity
-  read -p "    Git name [Myles Borins]: " GIT_NAME
-  GIT_NAME="${GIT_NAME:-Myles Borins}"
-  read -p "    Git email [myles.borins@gmail.com]: " GIT_EMAIL
-  GIT_EMAIL="${GIT_EMAIL:-myles.borins@gmail.com}"
-  read -p "    Git username [mylesborins]: " GIT_USERNAME
-  GIT_USERNAME="${GIT_USERNAME:-mylesborins}"
-
-  # Template .gitconfig
-  sed \
-    -e "s/name = Myles Borins/name = $GIT_NAME/" \
-    -e "s/email = myles.borins@gmail.com/email = $GIT_EMAIL/" \
-    -e "s/username = mylesborins/username = $GIT_USERNAME/" \
-    -e "s/user = mylesborins/user = $GIT_USERNAME/" \
-    "$SCRIPT_DIR/.gitconfig" > "$SCRIPT_DIR/.gitconfig.local"
-
-  DOTFILES=(.zshrc .p10k.zsh .gitignore_global .vimrc .npmrc)
+  DOTFILES=(.gitconfig .zshrc .p10k.zsh .gitignore_global .vimrc .npmrc)
   for f in "${DOTFILES[@]}"; do
     if [ -e "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
       echo "    Backing up ~/$f to ~/$f.bak"
@@ -103,13 +156,39 @@ if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "    Linked ~/$f"
   done
 
-  # .gitconfig uses the templated version
-  if [ -e "$HOME/.gitconfig" ] && [ ! -L "$HOME/.gitconfig" ]; then
-    echo "    Backing up ~/.gitconfig to ~/.gitconfig.bak"
-    mv "$HOME/.gitconfig" "$HOME/.gitconfig.bak"
+  if [ -e "$HOME/.gitconfig.local" ]; then
+    echo "    Keeping existing ~/.gitconfig.local"
+  else
+    read -p "    Git name [Myles Borins]: " GIT_NAME
+    GIT_NAME="${GIT_NAME:-Myles Borins}"
+    read -p "    Git email [myles.borins@gmail.com]: " GIT_EMAIL
+    GIT_EMAIL="${GIT_EMAIL:-myles.borins@gmail.com}"
+    read -p "    Git username [mylesborins]: " GIT_USERNAME
+    GIT_USERNAME="${GIT_USERNAME:-mylesborins}"
+
+    cat > "$HOME/.gitconfig.local" <<EOF
+[user]
+  name = $GIT_NAME
+  email = $GIT_EMAIL
+  username = $GIT_USERNAME
+  # signingkey = YOUR_SIGNING_KEY
+[github]
+  user = $GIT_USERNAME
+
+# Example folder-specific override:
+# [includeIf "gitdir:~/src/personal/"]
+#   path = ~/.gitconfig.personal
+
+# Example ~/.gitconfig.personal:
+# [user]
+#   name = $GIT_NAME
+#   email = you@example.com
+#   username = yourusername
+# [github]
+#   user = yourusername
+EOF
+    echo "    Wrote ~/.gitconfig.local"
   fi
-  mv "$SCRIPT_DIR/.gitconfig.local" "$HOME/.gitconfig"
-  echo "    Wrote ~/.gitconfig"
 fi
 
 # 9. Install vim plugins (after .vimrc is in place)
@@ -132,3 +211,4 @@ fi
 echo ""
 echo "Done! Open a new terminal to pick up changes."
 echo "Run 'p10k configure' if you need to set up your prompt theme."
+echo "If you installed apps, set iTerm2's font to 'JetBrainsMono Nerd Font' for the best prompt rendering."

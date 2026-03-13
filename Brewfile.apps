@@ -1,0 +1,19 @@
+# Optional GUI apps
+# Install on self-managed machines; skip on machines where these are already managed.
+
+# === Browsers / Identity ===
+cask "1password"
+cask "1password-cli"
+cask "google-chrome"
+
+# === Development Apps ===
+cask "visual-studio-code"
+cask "docker-desktop"
+
+# === Communication / Access ===
+cask "slack"
+cask "zoom"
+cask "tailscale-app"
+
+# === Fonts ===
+cask "font-jetbrains-mono-nerd-font"

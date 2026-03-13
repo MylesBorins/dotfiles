@@ -1,32 +1,31 @@
-# Brewfile — machine dependencies
-# Run: brew bundle --file=Brewfile
+# Brewfile — core dependencies
+# Run core only: brew bundle --file=Brewfile
+# Optional bundles:
+#   brew bundle --file=Brewfile.apps
+#   brew bundle --file=Brewfile.extras
 
-# === Zsh ===
+# === Shell / Prompt ===
 brew "powerlevel10k"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "eza"
 
-# === JavaScript ===
+# === Runtimes ===
 brew "fnm"
 brew "deno"
 brew "bun"
+brew "rustup"
+brew "uv"
 
-# === Dev Tools ===
+# === Development ===
 brew "git"
 brew "gh"
 brew "git-extras"
 brew "jq"
-brew "wget"
 brew "bat"
-brew "tig"
 brew "ripgrep"
-
-# === Build Tools ===
-brew "rustup"
-brew "uv"
-
-# === Infra ===
+brew "tig"
+brew "wget"
 brew "nmap"
 
 # === Editor ===
@@ -35,34 +34,12 @@ brew "vim"
 # === CLI Utilities ===
 brew "coreutils"
 brew "htop"
-brew "tree"
+brew "direnv"
+brew "fzf"
+brew "zoxide"
+brew "tmux"
+brew "shellcheck"
 
-# === Video Production ===
-brew "yt-dlp"
-brew "ffmpeg"
-
-# === Fun ===
-brew "cowsay"
-brew "fortune"
-brew "nyancat"
-brew "ponysay"
-
-# === AI ===
-brew "ollama"
-brew "opencode"
-brew "pi-coding-agent"
-
-# === Applications ===
-cask "visual-studio-code"
-cask "cursor"
-cask "google-chrome"
-cask "slack"
-cask "zoom"
-cask "discord"
-cask "1password"
-cask "1password-cli"
-cask "rectangle"
+# === Core Applications ===
 cask "iterm2"
-cask "docker-desktop"
-cask "vlc"
-cask "tailscale"
+cask "rectangle"

@@ -1,14 +1,3 @@
-[user]
-  # for anonymous commits
-  # name = secret
-  # email = secret@keep.it
-  # username = secret
-  name = Myles Borins
-  email = myles.borins@gmail.com
-  username = mylesborins
-  # signingkey = 0B5CA946
-[github]
-  user = mylesborins
 [color]
   diff = true
   ui = auto
@@ -27,7 +16,7 @@
   patchit-please = "!f() { curl -L $1.patch | git am -3; }; f"
   head = "!git rev-parse HEAD | cut -b -10"
   mcfly = reset --hard HEAD~1
-  fixup = commit --fixup HEAD`
+  fixup = commit --fixup HEAD
 [credential]
   # helper = osxkeychain
 [push]
@@ -38,3 +27,5 @@
   # gpgsign = true
 [init]
   defaultBranch = main
+[include]
+  path = ~/.gitconfig.local

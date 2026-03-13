@@ -1,0 +1,21 @@
+# Optional extras
+
+# === Media / Content ===
+brew "ffmpeg"
+brew "yt-dlp"
+
+# === AI / Experiments ===
+brew "ollama"
+brew "opencode"
+brew "pi-coding-agent"
+
+# === Fun ===
+brew "cowsay"
+brew "fortune"
+brew "nyancat"
+brew "ponysay"
+
+# === Extra Apps ===
+cask "cursor"
+cask "discord"
+cask "vlc"

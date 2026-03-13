@@ -3,33 +3,53 @@ set backspace=indent,eol,start
 set splitright
 syntax enable
 set mouse=a
+set hidden
+set ignorecase
+set smartcase
+set incsearch
 
-" Remap common typos
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
-
-" Auto-install vim-plug
-let data_dir = '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if has('persistent_undo')
+  let s:undo_dir = expand('~/.vim/undo')
+  if !isdirectory(s:undo_dir)
+    call mkdir(s:undo_dir, 'p')
+  endif
+  let &undodir = s:undo_dir
+  set undofile
 endif
 
-call plug#begin('~/.vim/plugged')
+if has('clipboard')
+  set clipboard=unnamedplus
+endif
 
-Plug 'preservim/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'preservim/nerdcommenter'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'vim-airline/vim-airline'
+" Remap common typos
+command WQ wq
+command Wq wq
+command W w
+command Q q
 
-call plug#end()
+let data_dir = expand('~/.vim')
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  echohl WarningMsg
+  echom 'vim-plug is not installed. Run ./setup.sh to install it.'
+  echohl None
+endif
+
+if !empty(glob(data_dir . '/autoload/plug.vim'))
+  call plug#begin(data_dir . '/plugged')
+
+  Plug 'preservim/nerdtree'
+  Plug 'jistr/vim-nerdtree-tabs'
+  Plug 'preservim/nerdcommenter'
+  Plug 'phanviet/vim-monokai-pro'
+  Plug 'vim-airline/vim-airline'
+
+  call plug#end()
+endif
+
 filetype plugin indent on
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() | q | endif
 
 " Theme
