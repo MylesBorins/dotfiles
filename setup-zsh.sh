@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # setup-zsh.sh — Install zsh dependencies referenced in ~/.zshrc
+# Install with "curl -fsSL https://raw.githubusercontent.com/MylesBorins/dotfiles/refs/heads/main/setup-zsh.sh | bash"
 # Homebrew-only (macOS). Safe to re-run.
 
 echo "==> Setting up zsh environment"
