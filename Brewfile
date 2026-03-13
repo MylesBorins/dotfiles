@@ -13,7 +13,7 @@ brew "eza"
 # === Runtimes ===
 brew "fnm"
 brew "deno"
-brew "bun"
+brew "oven-sh/bun/bun"
 brew "rustup"
 brew "uv"
 
