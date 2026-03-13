@@ -24,7 +24,7 @@ plugins=(git colorize evalcache)
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
-else
+elsesf
   export EDITOR='code'
 fi
 
@@ -58,9 +58,6 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 # Source Homebrew plugins (syntax-highlighting must be near end of .zshrc)
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# sfid (cached - run `_evalcache_clear` after updates)
-_evalcache sf aliases
 
 # Other Init (cached - run `_evalcache_clear` after updates)
 _evalcache fnm env --use-on-cd --shell zsh
