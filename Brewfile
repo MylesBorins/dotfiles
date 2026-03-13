@@ -24,6 +24,9 @@ brew "uv"
 # === Infra ===
 brew "nmap"
 
+# === Editor ===
+brew "vim"
+
 # === CLI Utilities ===
 brew "coreutils"
 brew "htop"

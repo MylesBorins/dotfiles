@@ -1,58 +1,53 @@
+set nocompatible
 set backspace=indent,eol,start
-
 set splitright
-
 syntax enable
 set mouse=a
 
-" From https://github.com/colinwren/dotfiles/blob/master/.vimrc
-" Remap :W to :w
+" Remap common typos
 :command WQ wq
 :command Wq wq
 :command W w
 :command Q q
 
-set nocompatible               " be iMproved
-filetype off                   " required!
+" Auto-install vim-plug
+let data_dir = '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'preservim/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'preservim/nerdcommenter'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Lokaltog/vim-powerline'
+call plug#end()
+filetype plugin indent on
 
-" Nerd tree Stuffs
+" NERDTree
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree() | q | endif
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Theme
+set termguicolors
+set background=dark
+silent! colorscheme gruvbox
 
-" auto
+" Airline
+set laststatus=2
+set t_Co=256
+
+" Indentation
 set sw=2 ts=2 sts=2
 set autoindent
 set smartindent
 set expandtab
 set cindent
 
-" Powerline
-let g:Powerline_symbols = 'fancy'
-set laststatus=2
-set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
-call Pl#Theme#RemoveSegment('fileencoding')
-call Pl#Theme#RemoveSegment('fileformat')
-
-"Show line number (disable)for certain filetypes
+" Line numbers
 set number
-autocmd BufNewFile,BufRead .*,COMMIT_EDITMSG set nonumber"
-
-"Highlight cursor
-"highlight CursorLine cterm=NONE ctermbg=8
-"
+autocmd BufNewFile,BufRead .*,COMMIT_EDITMSG set nonumber
