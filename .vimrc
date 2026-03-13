@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'preservim/nerdcommenter'
-Plug 'morhetz/gruvbox'
+Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
@@ -35,7 +35,7 @@ autocmd bufenter * if winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTa
 " Theme
 set termguicolors
 set background=dark
-silent! colorscheme gruvbox
+silent! colorscheme monokai_pro
 
 " Airline
 set laststatus=2

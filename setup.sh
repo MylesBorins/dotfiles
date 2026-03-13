@@ -52,7 +52,7 @@ else
   echo "==> ~/.zfunc already exists"
 fi
 
-# 7. vim-plug + plugins
+# 7. vim-plug
 PLUG_FILE="$HOME/.vim/autoload/plug.vim"
 if [ ! -f "$PLUG_FILE" ]; then
   echo "==> Installing vim-plug..."
@@ -60,10 +60,6 @@ if [ ! -f "$PLUG_FILE" ]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 else
   echo "==> vim-plug already installed"
-fi
-if [ -f "$HOME/.vimrc" ]; then
-  echo "==> Installing vim plugins..."
-  vim +PlugInstall +qall
 fi
 
 # 8. Symlink dotfiles (optional)
@@ -103,6 +99,12 @@ if [[ "$REPLY" =~ ^[Yy]$ ]]; then
   fi
   mv "$SCRIPT_DIR/.gitconfig.local" "$HOME/.gitconfig"
   echo "    Wrote ~/.gitconfig"
+fi
+
+# 9. Install vim plugins (after .vimrc is in place)
+if [ -f "$HOME/.vimrc" ]; then
+  echo "==> Installing vim plugins..."
+  vim +PlugInstall +qall
 fi
 
 echo ""
