@@ -21,11 +21,6 @@ export PATH="$PATH:$BUN_INSTALL/bin"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git colorize evalcache)
-
-# Source Homebrew Plugins
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -35,6 +30,8 @@ fi
 
 fpath+=~/.zfunc
 
+# Disable OMZ theme; powerlevel10k is sourced directly via Homebrew below
+ZSH_THEME=""
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -57,6 +54,10 @@ alias tree="eza --tree"
 
 # Select Theme
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# Source Homebrew plugins (syntax-highlighting must be near end of .zshrc)
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # sfid (cached - run `_evalcache_clear` after updates)
 _evalcache sf aliases
