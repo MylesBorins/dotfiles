@@ -64,7 +64,18 @@ nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>rg :Rg<Space>
+nnoremap <silent> <Leader>t :botright 12split<Bar>terminal<CR>
+nnoremap <silent> <Leader>a :call <SID>TmuxAgentSplit()<CR>
 autocmd bufenter * if winnr("$") == 1 && &filetype ==# 'nerdtree' | q | endif
+
+function! s:TmuxAgentSplit() abort
+  if exists('$TMUX')
+    silent execute '!tmux split-window -v'
+    redraw!
+  else
+    echo 'Not running inside tmux'
+  endif
+endfunction
 
 " Theme
 set termguicolors

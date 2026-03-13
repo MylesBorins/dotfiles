@@ -105,6 +105,8 @@ Useful mappings:
 - `Ctrl-P` — fuzzy-find files
 - `\b` — list open buffers
 - `\rg` — start an `:Rg` search
+- `\t` — open a terminal split below the current window
+- `\a` — ask tmux to split a new pane below for an agent/shell (when Vim is running inside tmux)
 
 ## tmux defaults
 
