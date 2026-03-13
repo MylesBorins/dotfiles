@@ -6,7 +6,11 @@ brew "powerlevel10k"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "eza"
+
+# === JavaScript ===
 brew "fnm"
+brew "deno"
+brew "bun"
 
 # === Dev Tools ===
 brew "git"
@@ -16,6 +20,7 @@ brew "jq"
 brew "wget"
 brew "bat"
 brew "tig"
+brew "ripgrep"
 
 # === Build Tools ===
 brew "rustup"
@@ -32,11 +37,20 @@ brew "coreutils"
 brew "htop"
 brew "tree"
 
+# === Video Production ===
+brew "yt-dlp"
+brew "ffmpeg"
+
 # === Fun ===
 brew "cowsay"
 brew "fortune"
 brew "nyancat"
 brew "ponysay"
+
+# === AI ===
+brew "ollama"
+brew "opencode"
+brew "pi-coding-agent"
 
 # === Applications ===
 cask "visual-studio-code"
@@ -50,3 +64,5 @@ cask "1password-cli"
 cask "rectangle"
 cask "iterm2"
 cask "docker-desktop"
+cask "vlc"
+cask "tailscale"
