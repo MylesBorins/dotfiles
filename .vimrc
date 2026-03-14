@@ -66,6 +66,8 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>rg :Rg<Space>
 nnoremap <silent> <Leader>t :botright 12split<Bar>terminal ++curwin<CR>
 nnoremap <silent> <Leader>a :call <SID>TmuxAgentSplit()<CR>
+nnoremap <silent> <S-h> :tabp<CR>
+nnoremap <silent> <S-l> :tabn<CR>
 autocmd bufenter * if winnr("$") == 1 && &filetype ==# 'nerdtree' | q | endif
 
 function! s:TmuxAgentSplit() abort
