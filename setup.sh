@@ -184,7 +184,7 @@ if [[ "$REPLY" =~ ^[Yy]$ ]]; then
   name = $GIT_NAME
   email = $GIT_EMAIL
   username = $GIT_USERNAME
-  # signingkey = YOUR_SIGNING_KEY
+
 [github]
   user = $GIT_USERNAME
 

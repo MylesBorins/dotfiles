@@ -29,7 +29,16 @@
 [help]
   autocorrect = 1
 [commit]
-  # gpgsign = true
+  gpgsign = true
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[user]
+  signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3z7xXpaQxa0sT8pwCqibsHvj7sNMkGgLik6x9UuVeLV549xI8hMkUxiRXip8g5oKQzPcaadBy5F1H5NDnXxLv31jOO1ZIGRhakthSDXfRqVlxOmplIhdIKC8wZxc47WaAWf2LGefnoXA9tPro8MyKnubnMJEHM9XN2CEB2m/XuiymlEYUw44kiISdASBWLNpOC6Ed7RaR8K46Fvv1VBzZJOObBgZTB65Sto2E/62pOxtF8Th6sTDXI4akiPe5trRRjJH7y3azXTPbnlFwdFO5IlhmKdpJkM0vX1RWGHmonSu7Wi/DtChsihLP6e3HShDQAsjDwvdTIaY7NhWjpWvo9CH+VzhwHpJ9o93cB7H9e7Y3WJ9vA6dAOm+cjjXv+rHM9zdD+QD6HfVfYE9kAw2nxlBfJ8JgU4/oJa1JiEogKubqYvL//oszF0qLngxFnaOKgVOGPH7YdY8r4kv2YJBPik89Htuj77pKmak8PEsiYVMGVj3p7pjwl8ttld2+Yts=
 [init]
   defaultBranch = main
 [include]
